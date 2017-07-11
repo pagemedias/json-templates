@@ -1,6 +1,8 @@
-# json-template
+# jsontemplate
 
 Simple JSON value templating.
+
+This package is an adaption (clone) of https://github.com/datavis-tech/json-templates. The only difference being change of regex to find token.
 
 ## Usage
 
