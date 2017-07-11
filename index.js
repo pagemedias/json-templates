@@ -76,7 +76,7 @@ var parseString = (function (){
 // e.g. "['#{foo}']" --> { key: "foo" }
 // e.g. "['#{foo:bar} --> { key: "foo", defaultValue: "bar" }
 function Parameter(match){
-  match = match.substr(2, match.length - 4).trim();
+  match = match.substr(2, match.length - 3).trim();
   var i = match.indexOf(":");
   if(i !== -1){
     return {
