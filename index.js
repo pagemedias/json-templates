@@ -45,8 +45,8 @@ function type(value){
 var parseString = (function (){
 
   // This regular expression detects instances of the
-  // template parameter syntax such as {{foo}} or {{foo:someDefault}}.
-  var regex = /{{(\w|:|[\s-+.,@/\//()?=*_])+}}/g;
+  // template parameter syntax such as #{foo} or #{foo:someDefault}.
+  var regex = /#{(\w|:|[\s-+.,@/\//()?=*_])+}/g;
 
   return function (str){
     if(regex.test(str)){
@@ -73,8 +73,8 @@ var parseString = (function (){
 
 
 // Constructs a parameter object from a match result.
-// e.g. "['{{foo}}']" --> { key: "foo" }
-// e.g. "['{{foo:bar}}']" --> { key: "foo", defaultValue: "bar" }
+// e.g. "['#{foo}']" --> { key: "foo" }
+// e.g. "['#{foo:bar} --> { key: "foo", defaultValue: "bar" }
 function Parameter(match){
   match = match.substr(2, match.length - 4).trim();
   var i = match.indexOf(":");
