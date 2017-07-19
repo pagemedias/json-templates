@@ -4,6 +4,7 @@
 // By Curran Kelleher and Chrostophe Serafin
 // November 2016
 var objectPath = require("object-path");
+var trim = require('trim-character');
 
 module.exports = parse;
 
@@ -58,8 +59,13 @@ var parseString = (function (){
         context = context || {};
         return matches.reduce(function (str, match, i){
           var parameter = parameters[i];
-          var value = objectPath.get(context, parameter.key) || parameter.defaultValue;
-          return str.replace(match, value);
+          var value = objectPath.get(context, parameter.key) || parameter.defaultValue; 
+          
+          if(type(value) === "string")         
+            return str.replace(match, value);   
+          else if(type(value) === "object" || type(value) === "array")
+            return str.replace('"' + match + '"', trim(JSON.stringify(value),'"')); 
+          
         }, str);
       }, parameters);
 
