@@ -60,12 +60,13 @@ var parseString = (function (){
         return matches.reduce(function (str, match, i){
           var parameter = parameters[i];
           var value = objectPath.get(context, parameter.key) || parameter.defaultValue; 
-          
+
           if(type(value) === "string")         
             return str.replace(match, value);   
           else if(type(value) === "object" || type(value) === "array")
             return str.replace('"' + match + '"', trim(JSON.stringify(value),'"')); 
-          
+          else
+            return str.replace(match, "");
         }, str);
       }, parameters);
 
